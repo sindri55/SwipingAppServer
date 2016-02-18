@@ -32,3 +32,11 @@ From the SwipingAppServer directory:
 > pip install -r REQUIREMENTS
 
 REQUIREMENTS is just a file containing information about the python packages and their versions used in the project.
+
+# Running the server
+
+With the virtualenv active:
+
+> python manage.py runserver [IP:PORT]
+
+The IP is usually either 127.0.0.1 to run purely locally or 0.0.0.0 to run broadcasted from the computer. Port up to you when in dev, the convension is 8000
