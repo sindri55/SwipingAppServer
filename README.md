@@ -39,4 +39,4 @@ With the virtualenv active:
 
 > python manage.py runserver [IP:PORT]
 
-The IP is usually either 127.0.0.1 to run purely locally or 0.0.0.0 to run broadcasted from the computer. Port up to you when in dev, the convension is 8000
+The IP is usually either 127.0.0.1 to run purely locally or 0.0.0.0 to run broadcasted from the computer. Port up to you when in dev, the convention is 8000
