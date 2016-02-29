@@ -17,7 +17,7 @@ Install for your OS
 
 ### Creating a virtualenv
 
-> virtualenv {name_of_virtualenv}
+> virtualenv -p python3 {virtualenv name}
 
 The name could be, for instance, .tapit
 
