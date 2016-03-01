@@ -22,3 +22,10 @@ class bankInfo(models.Model):
     bankName = models.CharField(max_length=255, null=True)
     iban = models.CharField(max_length=255)
     swift = models.CharField(max_length=255)
+
+
+class userProfile(models.Model):
+    owner = models.ManyToManyField(User)
+    companyName = models.TextField()
+    address = models.TextField()
+    contactNumber = models.CharField(max_length=40)
