@@ -17,4 +17,8 @@ class Transaction(models.Model):
         return super(Transaction, self).save(*args, **kwargs)
 
 
-# class UserInfo(models.Model):
+class bankInfo(models.Model):
+    owner = models.ManyToManyField(User)
+    bankName = models.CharField(max_length=255, null=True)
+    iban = models.CharField(max_length=255)
+    swift = models.CharField(max_length=255)
