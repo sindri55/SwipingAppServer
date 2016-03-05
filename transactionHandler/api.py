@@ -1,10 +1,13 @@
+from django.core import serializers
 from django.contrib.auth.models import User
 from transactionHandler.forms import UserForm
 from django.views.decorators.csrf import csrf_exempt
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login
+
+from transactionHandler.models import userProfile
 
 # Create your views here.
 
@@ -87,6 +90,7 @@ def user_login(request):
         return HttpResponse(status=405)
 
 
+@csrf_exempt
 @login_required
 def user_logout(request):
     # Since we know the user is logged in, we can now just log them out.
@@ -94,3 +98,29 @@ def user_logout(request):
 
     # Take the user back to the homepage.
     return HttpResponseRedirect('/')
+
+
+@csrf_exempt
+@login_required
+def user_profile(request):
+    print('in profile')
+    if request.method == 'GET':
+        pk = request.GET.get('pk', None)
+        print("pk is: ", pk)
+        if pk is None:
+            return HttpResponse(status=419)
+        try:
+            uP = userProfile.objects.get(pk=pk)
+        except userProfile.DoesNotExist:
+            print("No such profile")
+            return HttpResponse(status=404)
+        else:
+            print("in else")
+            print(request.user)
+            print(uP.owner)
+            if uP.owner == request.user:
+                return JsonResponse(serializers.serialize('json', [uP]), safe=False)
+            else:
+                return HttpResponse(status=401)
+    else:
+        return HttpResponse(status=507)

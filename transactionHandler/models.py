@@ -18,14 +18,20 @@ class Transaction(models.Model):
 
 
 class bankInfo(models.Model):
-    owner = models.ManyToManyField(User)
+    owner = models.OneToOneField(
+    	User,
+    	primary_key=True
+    )
     bankName = models.CharField(max_length=255, null=True)
     iban = models.CharField(max_length=255)
     swift = models.CharField(max_length=255)
 
 
 class userProfile(models.Model):
-    owner = models.ManyToManyField(User)
+    owner = models.OneToOneField(
+    	User,
+    	primary_key=True
+    )
     companyName = models.TextField()
     address = models.TextField()
     contactNumber = models.CharField(max_length=40)
